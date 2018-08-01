@@ -30,6 +30,7 @@ import org.bukkit.OfflinePlayer;
 import java.text.NumberFormat;
 import java.util.Locale;
 
+@SuppressWarnings("unused")
 public class LemonMobCoinsExpansion extends PlaceholderExpansion {
 
     private LemonMobCoinsAPI api;
