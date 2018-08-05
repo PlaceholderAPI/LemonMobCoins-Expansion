@@ -57,7 +57,7 @@ public class LemonMobCoinsExpansion extends PlaceholderExpansion {
     }
 
     /**
-     * @return String identifier 'plugin'
+     * @return String identifier
      */
     @Override
     public String getIdentifier() {
@@ -69,14 +69,15 @@ public class LemonMobCoinsExpansion extends PlaceholderExpansion {
      */
     @Override
     public String getVersion() {
-        return "1.0.0";
+        return "1.1.0";
     }
 
     /**
      * This method gets called when we need to parse a placeholder.
      * @return String placeholder
      */
-    public String onPlaceholderRequest(OfflinePlayer p, String identifier) {
+    @Override
+    public String onRequest(OfflinePlayer p, String identifier) {
         if (p == null) return null;
 
         switch(identifier.toLowerCase()){
