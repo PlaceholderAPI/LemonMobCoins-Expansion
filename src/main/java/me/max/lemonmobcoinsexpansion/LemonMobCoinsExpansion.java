@@ -23,8 +23,8 @@
 package me.max.lemonmobcoinsexpansion;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
-import me.max.lemonmobcoins.LemonMobCoins;
-import me.max.lemonmobcoins.api.LemonMobCoinsAPI;
+import me.max.lemonmobcoins.common.LemonMobCoins;
+import me.max.lemonmobcoins.common.api.LemonMobCoinsAPI;
 import org.bukkit.OfflinePlayer;
 
 import java.text.NumberFormat;
@@ -69,7 +69,7 @@ public class LemonMobCoinsExpansion extends PlaceholderExpansion {
      */
     @Override
     public String getVersion() {
-        return "1.1.0";
+        return "1.2.0";
     }
 
     /**
@@ -81,9 +81,9 @@ public class LemonMobCoinsExpansion extends PlaceholderExpansion {
         if (p == null) return null;
 
         switch(identifier.toLowerCase()){
-            case "balance": return String.valueOf(api.getCoinsOfPlayer(p));
-            case "balance_fixed": return String.valueOf((long) api.getCoinsOfPlayer(p));
-            case "balance_formatted": return format(api.getCoinsOfPlayer(p));
+            case "balance": return String.valueOf(api.getCoinsOfPlayer(p.getUniqueId()));
+            case "balance_fixed": return String.valueOf((long) api.getCoinsOfPlayer(p.getUniqueId()));
+            case "balance_formatted": return format(api.getCoinsOfPlayer(p.getUniqueId()));
         }
 
         return null;
