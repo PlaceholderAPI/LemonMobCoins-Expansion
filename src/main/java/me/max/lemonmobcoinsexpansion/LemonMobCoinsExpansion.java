@@ -25,6 +25,7 @@ package me.max.lemonmobcoinsexpansion;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.max.lemonmobcoins.common.LemonMobCoins;
 import me.max.lemonmobcoins.common.api.LemonMobCoinsAPI;
+import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 
 import java.text.NumberFormat;
@@ -35,17 +36,13 @@ public class LemonMobCoinsExpansion extends PlaceholderExpansion {
 
     private LemonMobCoinsAPI api;
 
-    public LemonMobCoinsExpansion(){
-        api = LemonMobCoins.getLemonMobCoinsAPI();
-    }
-
     /**
      * We use the LemonMobCoins API so we check if that is null.
      * @return true if the api is not null
      */
     @Override
     public boolean canRegister() {
-        return api != null;
+        return Bukkit.getPluginManager().getPlugin("LemonMobCoins") != null;
     }
 
     /**
@@ -69,7 +66,7 @@ public class LemonMobCoinsExpansion extends PlaceholderExpansion {
      */
     @Override
     public String getVersion() {
-        return "1.2.0";
+        return "1.2.1";
     }
 
     /**
@@ -79,6 +76,10 @@ public class LemonMobCoinsExpansion extends PlaceholderExpansion {
     @Override
     public String onRequest(OfflinePlayer p, String identifier) {
         if (p == null) return null;
+        if (api == null) {
+            api = LemonMobCoins.getLemonMobCoinsAPI();
+            if (api == null) return null;
+        }
 
         switch(identifier.toLowerCase()){
             case "balance": return String.valueOf(api.getCoinsOfPlayer(p.getUniqueId()));
